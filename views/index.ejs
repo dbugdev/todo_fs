@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <style>
+      .closeBtn {
+        border-radius: 100%;
+        background-color: #fff;
+        color: #fb4646;
+        border: none;
+        height: 40px;
+        width: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .closeBtn:active,
+      .closeBtn:focus {
+        outline: none;
+      }
+      .closeBtn:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+      }
+    </style>
+  </head>
+  <body onload="getFocus()">
+    <div
+      class="container p-5 bg-light"
+      style="
+        border: 2.5px dashed rgba(0, 0, 0, 0.192);
+        min-height: 100vh;
+        border-radius: 10px;
+        position: relative;
+      "
+    >
+      <h1 class="text-center display-4">Todo List 📃</h1>
+      <hr />
+      <!-- input group -->
+      <form action="/" method="POST">
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="👉 Enter Your todo here..."
+            name="todotext"
+            id="focus"
+          />
+
+          <div class="input-group-append">
+            <button class="btn btn-success" type="submit">Save</button>
+          </div>
+        </div>
+      </form>
+      <h1 class="lead text-center">Your Todos....</h1>
+      <hr />
+      <!--/ input group -->
+
+      <% if (todos.length>0) { %> <% for(todo of todos){ %>
+      <form action="/delete" method="POST">
+        <div class="alert alert-danger d-flex justify-content-between mb-3">
+          <%=todo.todotext %>
+          <input type="hidden" name="todoid" value="<%= todo.id %>" />
+          <button class="closeBtn"><i class="fa fa-trash"></i></button>
+        </div>
+      </form>
+
+      <% } %> <% }else {%>
+      <h4 class="text-center text-dark">No Todos!!!</h4>
+      <% } %>
+
+      <!--bottom text  -->
+      <div
+        style="
+          font-size: large;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          text-align: center;
+          padding: 20px;
+          color: #777;
+        "
+      >
+        Made with ❤
+      </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function getFocus() {
+        document.getElementById("focus").focus();
+      }
+    </script>
+  </body>
+</html>
